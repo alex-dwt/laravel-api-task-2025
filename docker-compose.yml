@@ -1,0 +1,36 @@
+name: alex-dwt-stake-test-task
+
+services:
+    server-svc:
+        build:
+            context: .
+        volumes:
+            - .:/application
+        networks:
+            - webnet
+        ports:
+            - "8000:8000"
+
+    database-svc:
+        image: postgres:15.5-alpine3.19
+        volumes:
+            - database_data:/var/lib/postgresql/data
+        environment:
+            - POSTGRES_PASSWORD=example
+        networks:
+            - webnet
+        ports:
+            - "5432:5432"
+
+    setup-vendor:
+        build:
+            context: .
+        volumes:
+            - .:/application
+        command: "composer install"
+
+networks:
+    webnet:
+
+volumes:
+    database_data:
