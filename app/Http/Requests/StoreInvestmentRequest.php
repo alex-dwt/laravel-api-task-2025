@@ -34,7 +34,7 @@ class StoreInvestmentRequest extends FormRequest
                     $campaign = Campaign::find($this->validated('campaign_id'));
                     $multiplier = $campaign->investment_multiple_fils;
                     if ($value % $multiplier !== 0) {
-                        $fail('Amount must be with multiplier ' . $multiplier); //todo Add transaction if needed
+                        $fail('Amount must be with multiplier ' . $multiplier); //todo Add translation if needed
                     }
                 },
             ],

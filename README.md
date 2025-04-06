@@ -41,6 +41,14 @@ curl --request POST \
 ```
 
 
+## How to check Pay-dividends command
+* `make recreate-db`
+* `make run-db-migrations-with-seed`
+* create some investments for campaign_id=1
+* `make shell`
+* `php artisan app:pay-dividends --campaign_id=1 --amount=500` inside the shell
+
+
 ## Notes about Models
 * Field `percentage_raised`.  
 I'm not sure what it's exactly.  
@@ -86,4 +94,5 @@ For the sake of simplicity, it's not validated fully (for example, there is no c
 When we are dealing with mathematical operations, rounding, etc. we must use extension `bcmath` and its functions https://www.php.net/manual/en/book.bc.php  
 For example https://www.php.net/manual/en/function.bcdiv.php etc.  
 For the sake of simplicity, this extension was skipped.  
+Stop using `floatval()`, `floor()` in the code, rewrite.
 
